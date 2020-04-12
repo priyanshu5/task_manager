@@ -10,9 +10,46 @@
 <body onload="getTodos()">
     <h1>Todo List Manager</h1>
 
-    <input type="text" name="task" id="task">
-    <input type="checkbox" name="done" id="done">
-    <button type="submit" id="submit">ADD</button>
+
+    <div class="col-sm-4">
+        <form>
+
+        
+        <h2 class="task_list_heading">Add New Task</h2><br>
+        <fieldset>
+
+            <label for="name">Title:*</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="description">Description:</label>
+            <input type="text" id="description">
+
+            <label for="duedate">Due Date:*</label>
+            <input type=date id="duedate">
+            <script>
+                document.getElementById('duedate').value = new Date(new Date().getTime() + 24 * 60 * 60 * 1000 - new Date().getTimezoneOffset() * 60 * 1000).toISOString().substr(0,10);
+            </script>
+            
+
+            <label for="priority">Priority:*</label>
+            <select id="priority" name="priority">
+                <option value="high">High</option>
+                <option value="medium" selected>Medium</option>
+                <option value="low">Low</option>
+            </select>
+
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+                <option value="incomplete" selected>InComplete</option>
+            </select>
+
+            <button id="submit">Submit</button>
+        </fieldset>
+        </form>
+        
+
+    </div>
+
 
     <ul id="tasklist">
         

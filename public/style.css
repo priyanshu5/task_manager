@@ -5,3 +5,11 @@
 h1 {
     text-align: center;
 }
+
+form {
+    max-width: 300px;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background: #f4f7f8;
+    border-radius: 8px;
+}

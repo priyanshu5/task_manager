@@ -11,18 +11,27 @@ const Todos = db.define('todo', {
         primaryKey: true,
         autoIncrement: true
     },
-    task: {
+    title: {
         type: Sequelize.STRING(100),
         allowNull: false
     },
-    done: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-        defaultValue: false
+    description: {
+        type: Sequelize.STRING(500)
     },
-    due: {
-        type: Sequelize.DATE
+    duedate: {
+        type: Sequelize.DATE,
+        allowNull: false
+    },
+    status: {
+        type: Sequelize.STRING(200),
+        allowNull: false,
+        defaultValue: "incomplete"
+    },
+    priority: {
+        type: Sequelize.STRING(100),
+        allowNull: false
     }
+    
 })
 
 module.exports = {

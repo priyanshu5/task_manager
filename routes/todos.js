@@ -26,22 +26,21 @@ route.get('/:id', async (req, res) => {
 })
 
 route.post('/', async (req, res) => {
-  if (typeof req.body.task !== 'string') {
+  if (typeof req.body.title !== 'string') {
     return res.status(400).send({ error: 'Task name not provided' })
   }
-  if (req.body.done === 'true') {
-    req.body.done = true
-  } else {
-    req.body.done = false
-  }
-
+  
   const newTodo = await Todos.create({
-      task: req.body.task,
-      done: req.body.done,
-      due: req.body.due,
+      title: req.body.title,
+      description: req.body.description,
+      duedate: req.body.duedate,
+      status: req.body.status,
+      priority: req.body.priority
+      
   })
 
   res.status(201).send({ success: 'New task added', data: newTodo })
 })
+
 
 module.exports = route

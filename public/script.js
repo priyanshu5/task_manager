@@ -2,12 +2,27 @@ let submit = document.getElementById('submit')
 
 
 submit.onclick = function() {
-  const task = document.getElementById('task')
-  
-  console.log(task.value)
-  const done = document.getElementById('done')
-  addNewTodoJson(task.value, done.value)
-  // console.log(typeof(todos))
+  const title = document.getElementById('title').value
+  // console.log(title.value)
+
+  const description = document.getElementById('description').value
+
+  const status = document.getElementById('status').value
+  // console.log(status.value)
+  const priority = document.getElementById('priority').value
+
+  var duedate = document.getElementById('duedate').value
+  console.log(typeof(duedate.value))
+  if(!duedate){
+    let date = new Date();
+   // add a day
+    date.setDate(date.getDate() + 1);
+    duedate = date.toString()
+    console.log(duedate)
+    console.log(typeof(duedate))
+  }
+
+  addNewTodoJson(title, description, duedate,  status, priority)
 }
 
 async function getTodos() {
@@ -21,8 +36,8 @@ async function getTodos() {
     var ul = document.getElementById('tasklist')
     
     var li = document.createElement("li");
-    li.setAttribute('id',todos[element].task);
-    li.appendChild(document.createTextNode(todos[element].task));
+    li.setAttribute('id',todos[element].title);
+    li.appendChild(document.createTextNode(todos[element].title));
     ul.appendChild(li);
   }
 
@@ -37,8 +52,8 @@ async function addTodosList(){
   var ul = document.getElementById('tasklist')
   
   var li = document.createElement("li");
-  li.setAttribute('id',todos[len].task);
-  li.appendChild(document.createTextNode(todos[len].task));
+  li.setAttribute('id',todos[len].title);
+  li.appendChild(document.createTextNode(todos[len].title));
   ul.appendChild(li);
 }
 
@@ -52,14 +67,14 @@ async function addNewTodoUrlEncoded(task, done, due) {
   })
 }
 
-async function addNewTodoJson(task, done) {
+async function addNewTodoJson(title, description, duedate, status, priority) {
 
   const resp = await fetch('/todos', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ task, done, due: '2020-04-05' })
+    body: JSON.stringify({ title, description, duedate, status, priority })
   })
 
   addTodosList()

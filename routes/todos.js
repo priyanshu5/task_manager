@@ -3,6 +3,16 @@ const { Todos } = require('../db')
 
 const route = Router()
 
+async function sortBy(sortvalue){
+  const todos = await Users.findAll({
+    order: [                    // ORDER BY age DESC, name ASC
+        ['sortvalue', 'ASC']
+    ]
+  })
+  return todos
+
+}
+
 route.get('/', async (req, res) => {
   const todos = await Todos.findAll()
   res.send(todos)
@@ -35,7 +45,8 @@ route.post('/', async (req, res) => {
       description: req.body.description,
       duedate: req.body.duedate,
       status: req.body.status,
-      priority: req.body.priority
+      priority: req.body.priority,
+      note: req.body.note
       
   })
 

@@ -5,9 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="expand.js"></script>
     <script async defer src="script.js"></script>
+
 </head>
-<body onload="getTodos()">
+<body>
     <h1>Todo List Manager</h1>
 
 
@@ -42,6 +47,8 @@
             <select id="status" name="status">
                 <option value="incomplete" selected>InComplete</option>
             </select>
+            <label for="note"> Note </label>
+            <input type="text" id="note">
 
             <button id="submit">Submit</button>
         </fieldset>
@@ -50,8 +57,17 @@
 
     </div>
 
+    <label for="sortBy">sort by</label>
 
-    <ul id="tasklist">
+    <select id="sortBy">
+    <option value="duedate">Due Date</option>
+    <option value="priority">Priority</option>
+    <option value="status">Status</option>
+    
+    </select>
+
+
+    <ul id="menu", class="list">
         
     </ul>
 </body>

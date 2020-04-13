@@ -30,6 +30,9 @@ const Todos = db.define('todo', {
     priority: {
         type: Sequelize.STRING(100),
         allowNull: false
+    },
+    note: {
+        type:Sequelize.STRING(1000)
     }
     
 })
